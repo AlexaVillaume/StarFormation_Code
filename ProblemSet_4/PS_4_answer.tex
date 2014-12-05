@@ -1,0 +1,316 @@
+\documentclass[12pt]{article}
+ \usepackage{amsmath}
+ \usepackage{mathtools}
+ \usepackage{accents}
+\usepackage{hyperref}
+
+ \newcommand*{\dt}[1]{%
+  \accentset{\mbox{\large\bfseries .}}{#1}}
+  
+ \begin{document}
+ 
+ \title{Problem Set 4}
+\author{Alexa Villaume\\ 
+Star Formation} 
+ 
+\maketitle
+ 
+\noindent \textbf{Problem 1 HII Region Trapping.} Consider a star of radius $R_*$ and mass $M_*$ with ionizing luminosity $S$ photons s$^{-1}$ at the center of a molecular cloud. For the purposes of this problem, we assume that the ionized gas has constant sound speed $c_s = 10$ km s$^{-1}$ and case B recombination coefficient $\alpha_B = 2.6 \times 10^{-13}$ cm$^{-3}$ s$^{-1}$. \\ 
+
+\noindent \textbf{(a)} Suppose the cloud is accreting onto the star at a constant rate $\dot{M}_*$. The incoming gas arrives at the free-fall velocity, and the accretion flow is spherical. Compute the equilibrium radius $r_i$ of the ionized region, and show that there is a critical value of $M_*$ below which $r_i \gg R_*$. Estimate this value numerically for $M_* = 30 M\odot$ and $S = 10^{49}$ s$^{-1}$. How does this compare to the typical accretion rates for massive stars? \\
+
+\noindent We know that ionizing luminosity when balanced with recombination luminosity takes the form of,
+
+\begin{equation}
+S = \frac{4}{3} \pi r^3_{i} \alpha_B n_e n_p.
+\end{equation}
+
+\noindent We can use this to find the equilibrium radius $r_i$. Since the gas is ionized let's say that $n_e = n_p$ and then put the above expression into differential form,
+
+\begin{equation}
+dS  = 4 \pi \alpha_B n^2 dr.
+\end{equation}
+
+\noindent Before we can evaluate this integral we need to find an expression for the number density $n$ which we can use $\dot{M}$, a given in the problem, since $n = \rho / \mu M_H$ and $\dot{M} =  4\pi r^2\rho \sqrt{\frac{GM}{R}}$\\ so, 
+
+\begin{equation}
+n = \frac{\dot{M}}{4 \pi \left(G M\right)^{1/2} \mu M_H} \text{ so, }
+\end{equation}
+
+\begin{equation}
+\int_{S_*}^0 ds = \frac{\alpha_B \dot{M}^2}{4\pi GM \left( \mu M_H \right)^{1/2}} \int_{R_*}^{r_i} \frac{1}{r}.
+\end{equation}
+
+\noindent Which, when evaluated, becomes,
+
+\begin{equation}
+-S_* = \frac{\alpha_B \dot{M}^2}{4\pi GM \left( \mu M_H \right)^{1/2}} \left( ln\left(r_i\right) - ln\left(R_* \right)\right)
+\end{equation}
+
+\noindent and we can solve for the equilibrium radius to get,
+
+\begin{equation}
+r_i = R_* e^{ - \frac{S_* 4 \pi G M \left( \mu M_H\right)^2 }{\alpha_B \dot{M}^2} }.
+\end{equation}
+
+\noindent We can use the term inside the exponent to get an expression for the critical density of $\dot{M}$ where $r_i \gg R_*$. When that term $ = 1$ $r_i$ will be on the order of $R_*$ but once that term grows larger the relative size of the equilibrium radius will grow exponentially. So, to get the critical $\dot{M}$ value we can set the term in the exponent equal to 1 and solve for $\dot{M}$ to get,
+
+\begin{equation}
+\dot{M} = - \sqrt{ \frac{S 4 \pi GM \left( \mu M_H \right)^2}{\alpha_B}}.
+\end{equation} 
+
+\noindent We can use the values given in the problem to calculate $\dot{M}$ to get, 
+
+\begin{equation}
+\dot{M} = 5.315 \times 10^{21} \text{g } \text{s}^{-1} = 8.5 \times 10^{-5}.
+\end{equation}
+
+\noindent Typical accretion rates are $\sim 10^{-4} - 10^{-3}$ so this accretion rate is a little low but not by a tone. \\
+
+\noindent \textbf{(b)} The H II region will remain trapped by the accretion flow as long as the ionized gas sound speed is less than the escape velocity at the edge of the ionized region. What accretion is required to guarantee this? Again, estimate this numerically for the values given above. \\
+
+\noindent We can just set the sound speed $c_s$ equal to the escape velocity,
+
+\begin{equation}
+c_s = \sqrt{\frac{2GM}{r_i}}.
+\end{equation}
+
+\noindent Which we can substitute in our expression for $r_i$ found in part and solve for $\dot{M}$,
+
+\begin{equation}
+\dot{M} = \left( - \frac{ S 4 \pi GM \left( \mu M_H \right)^2 }{\alpha_B ln \left( 2GM/c_s^2\right) } \right)^{1/2} \approx 10^{-5}.
+\end{equation}
+
+
+
+\noindent \textbf{Problem 2 Self-Similar Viscous Disks.} Consider a protostellar disk orbiting a star, governed by the usual viscous evolution equation,
+
+\begin{equation}
+\frac{\partial \Sigma}{\partial t} = \frac{3}{\varpi} \frac{\partial}{\partial \varpi} \left [ \varpi^{1/2} \frac{\partial}{\partial \varpi} \left(\nu \Sigma \varpi^{1/2} \right) \right], 
+\end{equation}
+
+\noindent where $\Sigma$ is the surface density, $\varpi$ is the radius in cylindrical coordinates, and $\nu$ is the viscosity. Suppose that the viscosity is linearly proportional to the radius, $\nu = \nu_1 \left( \varpi / \varpi_1 \right)$. \\
+
+\noindent \textbf{(a)} Non-dimensionalize the evolution equation by making a change of variables to the dimensionless position, time, and surface density $x = \varpi / \varpi_1$, $T = t/t_s$, $S = \Sigma/ \Sigma_1$, where $t_s = \varpi_1^2 / \left( 3\nu_1\right)$. \\
+
+\noindent We'll start by plugging in everything we can,
+
+\begin{equation}
+\frac{3 \Sigma_1 \nu_1}{\varpi_1} \frac{dS}{dT} = \frac{3}{x \varpi_1^2} \nu_1 \Sigma_1 \frac{\varpi_1^{1/2} \varpi_1^{1/2}}{\varpi_1} \frac{\partial}{\partial x} \left [ x^{1/2} \frac{\partial}{\partial x} \left ( x^{3/2} S \right) \right]
+\end{equation}
+
+\noindent And then simplifying, 
+
+\begin{equation}
+\frac{dS}{dT} = \frac{1}{x} \frac{\partial}{\partial x} \left( x^{1/2} \frac{\partial}{\partial x} \left( x^{3/2} S\right) \right).
+\end{equation}
+
+
+
+
+\noindent \textbf{(b)} Use your non-dimensionalized equation to show that,
+
+\begin{equation}
+\Sigma = \left( \frac{C}{3\pi \nu_1} \right) \frac{e^{-x/T}}{xT^{3/2}},
+\end{equation}
+
+\noindent is a solution of the equation for an arbitrary constant $C$. \\
+
+
+\noindent Let's start by non-dimensionalizing the expression and solving for $S$,
+
+\begin{equation}
+S  = \left( \frac{C}{3\pi \nu_1 \Sigma_1}\right) \frac{e^{-x/T}}{xT^{3/2}}
+\end{equation}
+
+\noindent Which take the derivative of with respect to $T$ to get,
+
+\begin{equation}
+\frac{dS}{dT} = \frac{C}{3\pi \nu_1 \Sigma_1}e^{-x/T} \left( \frac{1}{T^{7/2}} - \frac{3}{2x}\frac{1}{T^{5/2}} \right).
+\end{equation}
+
+\noindent And we can equate that expression to the expression found for the non-dimensional evolution equation found in part a 
+
+\begin{equation}
+ \frac{C}{3\pi \nu_1 \Sigma_1}e^{-x/T} \left( \frac{1}{T^{7/2}} - \frac{3}{2x}\frac{1}{T^{5/2}} \right) =  \frac{1}{x} \frac{\partial}{\partial x} \left( x^{1/2} \frac{\partial}{\partial x} \left( x^{3/2} S\right) \right).
+\end{equation}
+
+\noindent We'll deal with the right-hand side of the equation taking the derivatives starting with the innermost derivative. But - we need to substitute in the expression for $S$ from above since $S$ has a dependency on $x$. So, the right-hand side of the equation becomes,
+
+\begin{equation}
+ \frac{C}{3 \pi \nu_1 \Sigma_1 x} \frac{\partial}{\partial x} \left( x^{1/2} \frac{\partial}{\partial x} \left( x^{1/2} \frac{e^{-x/T}}{T^{3/2}}  \right) \right)
+\end{equation}
+
+\begin{equation}
+ \frac{C}{3 \pi \nu_1 \Sigma_1 x}  \frac{\partial}{\partial x} \left [ x^{1/2}\left( -\frac{e^{-x/T}x^{1/2}}{T^{5/2}} + \frac{e^{x/T}}{2}\frac{x^{-1/2}}{T^{3/2}}  \right) \right]
+\end{equation}
+
+\begin{equation}
+ \frac{C}{3 \pi \nu_1 \Sigma_1 x}  \frac{\partial}{\partial x} \left [\left( -\frac{e^{-x/T}x}{T^{5/2}} + \frac{e^{-x/T}}{2T^{3/2}}  \right) \right]
+\end{equation}
+
+\noindent Taking the derivative, the right-hand side of the equation becomes,
+
+\begin{equation}
+\frac{C}{3 \pi \nu_1 \Sigma_1}  e^{-x/T}\left( \frac{1}{T^{7/2}} - \frac{3}{2x}\frac{1}{T^{5/2}} \right).
+\end{equation}
+
+\noindent So we see that, 
+
+\begin{equation}
+ \frac{C}{3\pi \nu_1 \Sigma_1}e^{-x/T} \left( \frac{1}{T^{7/2}} - \frac{3}{2x}\frac{1}{T^{5/2}} \right) =  \frac{1}{x} \frac{\partial}{\partial x} \left( x^{1/2} \frac{\partial}{\partial x} \left( x^{3/2} S\right) \right).
+\end{equation}
+
+\begin{equation}
+= \frac{C}{3 \pi \nu_1 \Sigma_1}  e^{-x/T}\left( \frac{1}{T^{7/2}} - \frac{3}{2x}\frac{1}{T^{5/2}} \right).
+\end{equation}
+
+\noindent \textbf{(c)} Calculate the total mass in the disk in terms of $C$, $t_s$, and $t$, and calculate the time rate of change of this mass. Based on your result, give a physical interpretation of what the constant $C$ means. (Hint: what units does $C$ have?). \\
+
+\noindent Total mass is given by, 
+
+\begin{equation}
+M_{tot} = \int 2 \pi \varpi \Sigma d\varpi 
+\end{equation}
+
+\noindent This equation is reasonable because mass by units is $\Sigma/\varpi^2$ which we have to integrate over the area of the disk which we can approximate with 2 times the area of a circle to account for the faces of the disk. We'll non-dimensionalize the $M_{tot}$ expression and put our expression for $\Sigma$ into the equation and simplify to get,
+
+\begin{equation}
+M_{tot} = \frac{2}{3}\frac{2\varpi_1^2}{T^{3/2}\nu_i} \int_0^\infty e^{-x/T} dx 
+\end{equation}
+
+\begin{equation}
+M_{tot} = \frac{2}{3}\frac{2\varpi_1^2}{T^{3/2}\nu_i} T |_0^\infty - e^{-x/T} dx 
+\end{equation}
+
+\noindent Which becomes 
+
+\begin{equation}
+M_{tot} = \frac{2}{3} \frac{C \varpi_1^2}{T^{1/2}\nu_1}
+\end{equation}
+
+\noindent And substituting in the expressions for $T$ and $t_s$ we can get an expression for the mass in differentiable form,
+
+\begin{equation}
+dm = \frac{2Ct_s^{3/2}}{t} dt.
+\end{equation}
+
+\noindent The units for $C$ are mass over time so $C$ is the accretion rate of the material of the disk onto the star. \\
+
+
+\noindent \textbf{(d)} Plot $S$ versus $x$ at $T = 1, 1.5, 2, \text{and } 4$. Give a physical interpretation of the results. \\
+
+\noindent The plot is at the end. There is a critical point in the disk where the surface density changes. The highest temperature $T = 4$ has the lowest surface density of the models before this critical radius is reached and the lowest temperature has the highest surface density. After the critical point, the highest temperature model has the highest surface density and the lowest temperature model has the lowest.\\
+
+\noindent \textbf{Problem 3 A Simple T Tauri Disk Model.} In this problem we will construct a simple model of a T Tauri star disk in terms of a few parameters: the midplane density and temperature $\rho_m$ and $T_m$, the surface temperature $T_s$, the angular velocity $\Omega$, and the specific opacity of the disk material $\kappa$. We assume that the disk is very geometrically thin and optically thick, and that it is in thermal and mechanical equilibrium. \\
+
+\noindent \textbf{(a)} Assume that the disk radiates as a blackbody at temperature $T_s$. Show that the surface and midplane temperatures are related approximately by, 
+
+\begin{equation}
+T_m \approx \left( \frac{3}{8} \kappa \Sigma \right)^{1/4} T_s.
+\end{equation}
+
+\noindent where $\Sigma$ is the disk surface density. \\
+
+
+\noindent We'll start with the general expression flux expression that'll we'll call the mid-plane flux,
+
+\begin{equation}
+F_m = \frac{-4ac}{3}\frac{T_m^3}{\kappa \rho} \frac{dT}{dz},
+\end{equation}
+
+\noindent and expression for total flux we get from integrating the Boltzmann distribution,
+
+\begin{equation}
+F_s = \sigma T_s^4
+\end{equation}
+
+\noindent We'll equation the two fluxes to get,
+
+\begin{equation}
+\sigma T_s^4 = \frac{-4ac}{3}\frac{T_m^3}{\kappa \rho} \frac{dT}{dz}
+\end{equation}
+
+\noindent Let's shuffle around the variables a bit,
+
+\begin{equation}
+\sigma T_s^4 \rho dz = \frac{-4ac}{3}\frac{T_m^3}{\kappa} dT
+\end{equation}
+
+\noindent Now, we'll integrate and note that $\int_\infty^0 \rho\left(z\right) dz = -\frac{1}{2}\Sigma$ and also $\sigma = \frac{ac}{4}$ to get,
+
+\begin{equation}
+\frac{1}{2}\Sigma \sigma T_s^4 = \frac{4\sigma}{3}\frac{T_m^4}{\kappa}
+\end{equation}
+
+\noindent Which can be very simply re-arranged to get $T_m \approx \left( \frac{3}{8} \kappa \Sigma \right)^{1/4} T_s$. \\
+
+\noindent \textbf{(b)} Suppose the disk is characterized by a standard $\alpha$ model, meaning that the viscosity is $\nu = \alpha c_s H$, where $H$ is the scale height and $c_s$ is the sound speed. For such a disk the rate per unit area of the disk surface (counting each side separately) at which the energy is released by viscous dissipation is $F_d = \left( 9/8 \right)\nu\Sigma\Omega^2$. Derive an estimate for the midplane temperature $T_m$ in terms of $\Sigma$, $\Omega$, and $\alpha$. \\
+
+\noindent Let's start by plugging some things into the $F_d$ expression including the given $\nu$ expression and $H = c_s / \Omega$ to get, 
+
+\begin{equation}
+F_d = \frac{9}{8} \alpha c_s^2 \Sigma \Omega
+\end{equation}
+
+\noindent Which we can relate to the surface flux since all the vicious dissipation will be released at the surface,
+
+\begin{equation}
+\sigma T_s^4 = \frac{9}{8} \alpha c_s^2 \Sigma \Omega 
+\end{equation}
+
+\noindent and substitute in the expression for for $T_s$ to get,
+
+\begin{equation}
+\sigma \left( \frac{8}{3} \frac{1}{\kappa \Sigma}\right) T_m^4 = \frac{9}{8} \alpha c_s^2 \Sigma \Omega 
+\end{equation}
+
+\noindent and solve for $T_m$, 
+
+\begin{equation}
+T_m = \left( \frac{27}{64} \frac{\alpha c_s^2 \Sigma^2 \Omega \kappa}{\sigma} \right)^{1/4}.
+\end{equation}
+
+
+\noindent \textbf{(c)} Calculate the cooling time of the disk in terms of the orbital period. Should the behavior of the disk be closer to isothermal or adiabatic? \\
+
+\noindent The cooling time is the amount time it takes for a disk to dissipate its energy completely so it's total energy over the rate of energy lost. We know that $E_tot = E_{rad} + E_{gas}$ and the rate of energy lost is $f_d$. Since we have to account for the two faces of the disk the cooling time can be expressed as,
+
+\begin{equation}
+t_c = \frac{E_{rad} + E_{gas}}{2f_d}.
+\end{equation}
+
+\noindent It probably is reasonable to assume that $E_{gas} \gg E_{rad}$ so, let's. $E_{gas} = \frac{3}{2} n \kappa T$ which is an energy density. To get total energy we have to integrate over the scale height of the disk,
+
+\begin{equation}
+E_{tot} = \int_{-H}^{H}  \frac{3}{2} n \kappa T dz 
+\end{equation}
+
+\noindent where $ n = \rho/\mu M_H$ so, 
+
+\begin{equation}
+E_{tot} = \int_{-H}^{H}  \frac{3}{2} \frac{\rho}{\mu M_H} \kappa T dz = \frac{3}{2} \frac{\Sigma}{\mu M_H} K T.
+\end{equation}
+
+\noindent Since $c_s = \left( \kappa T/ \mu M_H \right)^{1/2}$ then $E_{tot} = \frac{3}{2} \Sigma c_s^2$ which we can substitute back into our expression for cooling time,
+
+\begin{equation}
+t_c = \frac{2}{3} \frac{\Sigma c_s^2}{2 \left(9/8 \right) \nu \Sigma \Omega^2}
+\end{equation}
+
+\noindent We'll simplify the expression by noting that angular velocity $\Omega = 2\pi/t_{orb}$ and $H = c_s / \Omega$, 
+
+\begin{equation}
+t_c = \frac{t_{orb}}{3 \alpha \pi }
+\end{equation}
+
+\noindent If $\alpha \ll 1$ then it would be isothermal since it would be many orbits before the cooling time is reached. Otherwise, the cooling time would be on the order of one orbital period, which would be adiabatic. The values for $\alpha$ that we see are typically $\ll 1$ so I'll just go ahead and say isothermal. \\
+
+\noindent \textbf{(d)} Consider a disk with mass of 0.03 $M\odot$ orbiting a 1 $M\odot$ star. The disk runs from 1 to 20 AU, and the surface density varies as $R^{-1}$. Use your model to make plots of $\rho_m$, $T_m$, and $T_s$ as a function of the radius for this disk. Is your numerical model disk gravitationally unstable (i.e. $\mathcal{Q} < 1$) anywhere? For the purposes of numerical evaluation, use $\kappa = 3 \text{cm}^2 \text{ g}^{-1} \text{ and } \alpha = 0.01$. \\
+
+
+\begin{figure}[H]
+\includegraphics[width=0.7\textwidth]{plot_2_d.pdf}
+\end{figure}
+
+\end{document}
