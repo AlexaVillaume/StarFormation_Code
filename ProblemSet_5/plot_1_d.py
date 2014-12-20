@@ -31,8 +31,8 @@ def derivatives(mass, radius):
 
 def other_derivs(mass, radius):
     bb = max(bb_luminosity(radius*6.955e10), 3.846e33*(mass**3))
-    print bb - (0.25*G*Mdot)*((mass*solar_g)/(radius*6.955e10))
     return bb - (0.25*G*Mdot)*((mass*solar_g)/(radius*6.955e10))
+
 
 def tout_radius(M):
     omega = 0.62246212
