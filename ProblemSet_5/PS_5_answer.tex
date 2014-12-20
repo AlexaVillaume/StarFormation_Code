@@ -1,0 +1,245 @@
+\documentclass[12pt]{article}
+ \usepackage{amsmath}
+ \usepackage{mathtools}
+ \usepackage{accents}
+\usepackage{hyperref}
+
+ \newcommand*{\dt}[1]{%
+  \accentset{\mbox{\large\bfseries .}}{#1}}
+  
+ \begin{document}
+ 
+ \title{Problem Set 5}
+\author{Alexa Villaume\\ 
+Star Formation} 
+ 
+\maketitle
+ 
+\noindent \textbf{Problem 1 A Simple Protostellar Evolution Model.} Consider a protostar forming with a constant accretion rate $\dot{M}$. The accreting gas is fully molecular, arrives at free-fall, and radiates away a luminosity $L_{acc} = f_{acc}GM\dot{M}/R$ at the accretion shock, where $M$ and $R$ are the instantaneous protostellar mass and radius, and $f_{acc}$ is a numerical constant of order unity. At the end of contraction the resulting star is fully ionized, all its deturium has been burned to hydrogen, and it is in hydrostatic equilibrium. The ionization potential of hydrogen is $\psi_I = 13.6$ eV per amu, the dissociation potential of molecular hydrogen is $\psi_M = 2.2$ eV per amu, and the energy released by deuterium burning is $\psi_D \approx 100$ eV per amu of total gas (not per amu of deuterium). \\
+
+\noindent \textbf{(a)}  First consider a low-mass protostar whose internal structure is well-described by an $n = 3/2$ polytrope. Compute the total energy of the star, including thermal energy, gravitational energy, and the chemical energies associated with ionization, dissociation, and deuterium burning.\\
+
+\noindent The gravitational energy for a polytrope is,
+
+\begin{equation}
+E_g = -\frac{GM^2}{R}\left ( \frac{3}{5-n}\right)
+\end{equation}
+
+\noindent From the Virial Theorem we know that $E_{i} = -2E_g$. To get the chemical energy we can think how deuterium burning will add energy to the system while ionization and dissociation will remove energy from the system so $E_{chem} = 100 - 13.6 - 2.2 = 84.2$ eV  $\times \frac{M}{m_p}$. So,
+
+\begin{equation}
+E_{tot} = -\frac{3}{7}\frac{GM^2}{R} + 84.2\mathrm{eV} \times \frac{M}{m_p}.
+\end{equation}\\
+
+\noindent \textbf{(b)} Use your expression for the total energy to derive an equation for the radius for a star. Assume the star is always on the Hayashi track, which for the purposes of this problem we will approximate as having a fixed effective temperatures $T_{eff} = 3500$ K. \\
+
+\noindent Luminosity is the energy per unit time so,
+
+\begin{equation}
+-\dot{E}_{tot} = L_{acc} + L_{bb}
+\end{equation}
+
+\noindent Since some amount of the of the energy produced by the forming star will go out into space and some amount into the accretion disk. More specifically, this expression becomes, 
+
+\begin{equation}
+-\dot{E}_{tot} = 4 \pi R^2 \sigma T^4_{eff} - \left(1 - f_{acc} \right)\frac{GM\dot{M}}{R}
+\end{equation}
+
+\begin{equation}
+-\frac{3G}{7}\left(\frac{2M\dot{M}}{R} - \frac{M^2\dot{R}}{R^2} \right) = 4 \pi R^2 \sigma T^4_{eff} - \left(1 - f_{acc} \right)\frac{GM\dot{M}}{R}
+\end{equation}
+
+\noindent From which we can solve for $\dot{R}$,
+
+\begin{equation}
+\dot{R} = \frac{7R^2}{3GM^2} \left[ -4\pi R^2 \sigma T^4_{eff} + \left(1 - f_{acc}\frac{GM\dot{M}}{R} + \frac{84.2}{m_p}\dot{M} + \frac{6GM\dot{M}}{7R} \right) \right]
+\end{equation} \\
+
+\noindent \textbf{(c)} Numerically integrate your equation and plot the radius as a function of mass for $\dot{M} = 10^{-5} M_\odot \mathrm{yr}^{-1}$ and $f_{acc} = 3/4$. As an initial condition, use $R = 2.5 R_\odot$ and $M = 0.01 M_\odot$, and stope the integration at mass of $M = 1.0 M_\odot$. Plot the radius and luminosity as a function of mass; in the luminosity, include both the accretion luminosity and the internal luminosity produced by the star.\\
+
+\noindent \textbf{(d)} Now consider two modifications we can make to allow the model to work for massive protostars. First, since massive stars are radiative, the polytropic index will roughly be $n = 3$ rather than $n = 3/2$. Second, the surface temperature will in general be larger than the Hayashi limit, so take the luminosity to be $L = \mathrm{max}\left[ L_h, L_{\odot}\left( M/M_{\odot}\right)^2\right]$, where $L_H = 4 \pi R^2 \sigma T_H^4$ and $R$ is the stellar radius. Modify your evolution equation for the radius to include these effects, and numerically integrate the modified equations to $M = 50 M_{\odot}$ for $\dot{M} = 10^{-4}  M_{\odot}  \mathrm{yr}^{-1}$ and $f_{acc} = 3/4$, using the same initial conditions as for the low mass case. Plot $R$ and $L$ versus $M$. \\
+
+
+\noindent \textbf{(e)} Compare your result to the fitting formula for the ZAMS radius of solar-metallicity stars as a function of $M$ in Tout et al (1996, {\it MNRAS}, 281, 257). Find the mass at which the massive star would join the main sequence. Your plots for $R$ and $L$ are only valid up to this mass, because this simple models does not include hydrogen burning. \\
+
+
+\noindent \textbf{Problem 2 Disk Dispersal by Photoionization.} Consider a disk around T Tauri star of mass $M_*$ that producse an ionizing flux $\Phi$ photons $s^{-1}$. The flux ionizes the disk surface and raises the gas temperature to $10^4$ K, leading to a wind leaving the disk surface.\\
+
+\noindent \textbf{(a)} Close to the star the ionized gas remains bound due to the star's gravity. Estimate the gravitational radius $r_g$ at which the ionized gas becomes unbound. \\
+
+\noindent When bound, 
+
+\begin{equation}
+E = 0 = \frac{3}{2}k_bT -\frac{2GMm_p}{r_g},
+\end{equation}
+
+\noindent Where the second term is the square of the escape velocity and the first term is the square of the thermal velocity. We can solve for $r_g$,
+
+\begin{equation}
+r_{g} = \frac{4}{3}\frac{GMm_p}{k_bT}.
+\end{equation}
+
+\noindent \textbf{(b)} Inside $r_g$, we can think of the trapped ionized gas as forming a cloud of characteristic density $n_0$. Assuming this region is roughly in ionization balance, estimate $n_0$. \\
+
+\noindent When in balance, the ionization rate $ = \Phi = $ recombination. So,
+
+\begin{equation}
+\Phi = \alpha_B n_0, n_0 = \frac{\Phi}{\alpha_B}.
+\end{equation}
+
+\noindent Where, $\alpha_B = 2.6 \times 10^{-13}$ cm$^3$ s$^{-1}$. \\ 
+
+
+
+
+
+\noindent \textbf{(c)} At $r_g$, a wind begins to flow off the disk surface. Because the ionizing photons are attenuated quickly as one moves away from the star,  most of the mass comes from radii $\sim  r_g$. Make a rough estimate of the mass flux in the wind. \\
+
+\noindent Mass flux can be thought of as the amount of mass per time moved through an area so we end up with, 
+
+\begin{equation}
+\frac{\dot{M}}{A} = \frac{4\pi r^2\rho v}{4\pi r^2} = \rho v
+\end{equation}
+
+\noindent Where $\rho$ is the critical density of the trapped ionized gas $n_0$ times the mass of the hydrogen particles in the disk, $m_H$ and $v$ is the escape velocity. \\
+
+
+
+\noindent \textbf{(d)} Evaluate the mass flux numerically for a 1 $M_\odot$ star with an ionizing flux $10^{41}$ s$^{-1}$. How long would this take to evaporate a 0.01 $M_\odot$ disk around this star? Given the observed lifetimes of T Tauri star disk, are photionization-induced winds a plausible candidate for the primary disk removal mechanism? \\
+
+\begin{equation}
+\frac{\dot{M}}{A} = \rho v_{esc} = n_0 m_H v_{esc} = 
+\end{equation}
+
+\noindent The density, $\rho$, is given by $n_0*m_p \approx 10^{30}$ g cm$^{-3}$. The escape velocity is,
+
+\begin{equation}
+v_{esc} = \sqrt{\frac{2GM}{r_g}} = \sqrt{\frac{3k_b T}{2m_p}}  
+\end{equation}
+
+\noindent So, mass flux is $3.52 \times 10^{37} \mathrm{g~s}^{-1}\mathrm{cm}^2$.  This is an obviously very extreme value so I probably made some arithmetic error.\\
+
+\noindent The time it takes to evaporate the disk would just be the mass of the disk divided by the mass-loss rate so,
+
+\begin{equation}
+t_{evp} = \frac{M}{\dot{M}} = \frac{0.01 M_{\odot}}{\frac{4}{3}\pi r_g n_0 m_H v_{esc}} = 
+\end{equation} 
+
+\noindent The observed lifetimes of T Tauri disk are generally 1-10 Myr. I compute a very small disk lifetime but that's probably due to the same problem that leads to my really large mass flux value. I think it's a problem with my density ($n_0m_H$) value.\\
+
+
+
+
+
+\noindent \textbf{Problem 3 Aerodynamics of Small Solids in a Disk.} Consider a solid sphere of radius $s$ and density $\rho_s$, orbiting a star of mass $M$ at a distance $r$. The sphere is embedded in a protoplanetary disk, whose density and temperature where the particle is orbiting are $\rho_d$ and $T$. The gas pressure in the disk varies with distance from the star as $P \propto r^{-n}$.  \\
+
+\noindent \textbf{(a)} Because it is partially supported by gas pressure, gas in the disk orbits at a velocity slightly below the Keplerian velocity. Show that the difference between the gas velocity $v_g$ and the Keplerian velocity $v_K$ is 
+
+\begin{equation}
+\Delta v = v_K - v_g \approx \frac{nc_s^2}{2v_k},
+\end{equation} 
+
+
+\noindent where $c_s$ is the isothermal sound speed of the gas. You may assume that the deviation from Keplerian rotation is small. \\
+
+\noindent Let's begin by writing, 
+
+\begin{equation}
+\frac{v_K^2}{R} = \frac{v_{gas}^2}{R} + \frac{dP}{dr}\frac{1}{\rho}.
+\end{equation}
+
+\noindent Which follows from the fact that the gas is moving at sub-Kepler speeds and the difference is given by hydrostatic balance and we're dividing the velocities by the radius to get the terms in units of acceleration. \\
+
+\noindent We also know that $v_K = \sqrt{GM/R}$ and that $P = r^{-n} = \rho c_s^2$. So that $\rho = \frac{r^{-n}}{c_s^2}$ and $dP/dr = -nr^{-n-1}$. This means that, 
+
+\begin{equation}
+\frac{v_K^2}{R} = \frac{v_{gas}^2}{R} + \frac{nc_s^2}{R}.
+\end{equation}
+
+\begin{equation}
+\frac{v_{gas}^2}{v_K^2} = 1 + \frac{nc_s^2}{v_K^2}.
+\end{equation}
+
+\noindent We can get the square root of the right-hand side by Taylor Expanding (and only taking the first term),
+
+\begin{equation}
+\frac{v_{gas}}{v_K} \approx 1 + \frac{1}{2}\frac{nc_s^2}{v_K^2}.
+\end{equation}
+
+\begin{equation}
+v_{gas} - v_K \approx \frac{nc_s^2}{2v_K^2}.
+\end{equation}
+
+
+\noindent \textbf{(b)} For a particle so small that the mean free path of gas atoms is $> s$ (which is the case for grains smaller than $\sim$ 10 cm), the drag force it experience as it moves through the gas at a relative velocity $v$ is,
+
+\begin{equation}
+F_D = \frac{4\pi}{3}s^2\rho_dvc_s.
+\end{equation}
+
+\noindent This is called the Epstein drag law. We define the stopping time $t_s$ as the ratio of the particle's momentum to $F_D$, this is the time required to reduce the particle velocity by one $e$-folding. Compute $t_s$ for a particle governed by Epstein drag. \\
+
+
+\begin{equation}
+t_s = \frac{p_d}{F_D} = \frac{m_dv}{F_D} = \frac{m_dv}{\frac{4\pi}{3}s^2\rho_dvc_s} =  \frac{m_d}{\frac{4\pi}{3}s^2\rho_dc_s}.
+\end{equation}
+
+\noindent \textbf{(c)} For small particles $t_s$ is much less than the orbital period of a particle rotating at the Keplerian speed. In this case, drag will force the particle's orbital velocity to match the sub-Keplerian orbital velocity of the gas, and since the particle is not supported by pressure as the disk is, it will drift inward. Estimate the equilibrium drift velocity, and the time required for the particle to drift into the star. \\
+
+
+\noindent We can begin with,
+
+\begin{equation}
+\frac{v_K^2}{R} - \frac{v_{gas}^2}{R} =  \frac{F_D}{m_d}
+\end{equation}
+
+\begin{equation}
+\frac{nc_s^2}{2v_k}=  \frac{F_D}{m_d}
+\end{equation}
+
+\noindent The time it would take for the particle to drift into the star is just the distance over the velocity,
+
+\begin{equation}
+v_K = \frac{m_d}{F_D}\frac{nc_s^2}{2}
+\end{equation}
+
+\begin{equation}
+t_{drift} = r \frac{2F_D}{nm_dc_s^2}
+\end{equation}
+
+
+\noindent \textbf{(d)} Consider a particle of size $s = 1$ cm and density $\rho_s = 3$ g cm$^{-3}$ orbiting at $r = 1$ AU in a protoplanetary disk of density $\rho_d = 10^{-9}$ g cm$^{-3}$, temperature $T = 600$ K, and pressure index $n = 3$. Verify that this particle is in the regime where $t_s$ is much less than the orbital period, and then numerically evaluate the time required for the particle to drift into the star. How does this compare to the observed time scale of planet formation and disk dissipation? \\
+
+
+\noindent I calculate $t_s = 238$ seconds which is much less than the orbital period. For the drift time,
+
+\begin{equation}
+c_s = \sqrt{\frac{k_bT}{\mu m_H}} = 3.15^{5}
+\end{equation}
+
+\begin{equation}
+\frac{F_D}{c_s^2} = \frac{\frac{4\pi}{3}s^2\rho_dv}{c_s}  \approx 1^{6} 
+\end{equation}
+
+\noindent So $t_{drift}$ is 
+
+\begin{equation}
+t_{drift} = r \frac{2*1^6}{nm_d} = \frac{1.5^{16} 2^{6}}{9} \approx 1^{23} seconds
+\end{equation}
+
+\noindent Which is much much higher than observed time scale for planet formation.
+\begin{figure}[H]
+\includegraphics[width=0.5\textwidth]{low_mass_m_v_r.pdf}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=0.5\textwidth]{low_mass_m_v_l.pdf}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=0.5\textwidth]{massive_m_v_r.pdf}
+\end{figure}
+
+
+
+\end{document}
